@@ -1,0 +1,17 @@
+{
+  "y": "log_area",
+  "entity_level": "entity_id",
+  "time_level": "year",
+  "Z_selected": [
+    "Z_temp_m5",
+    "Z_temp_m9",
+    "Z_temp_m12",
+    "Z_prcp_m2",
+    "Z_prcp_m5",
+    "Z_temp_m4",
+    "Z_prcp_m1",
+    "Z_temp_m6",
+    "Z_temp_m1",
+    "Z_temp_m3"
+  ]
+}
