@@ -39,5 +39,4 @@ pip install -r requirements-jupyter.txt
 ```
 
 ### Data Availability 
-Raw data files are not included. Agricultural data can be extracted through the API by running the Jupyter notebook.
-Meteorological data is sourced on its respective notebook. The name of the file is _ghcnd_hcn.tar_
+Raw meteorogical data is missing the tar file _ghcnd_hcn.tar_. This was omitted due to size but the source link can be found in the notebook _02_weather_clean_. Agricultural data can be extracted through the API by running the Jupyter notebook.
