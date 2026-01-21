@@ -17,9 +17,11 @@ def hinge_quartile_search(feat):
 
 
 def drop_month_family(cols, base):
+    """ Drops month family of column """
     return [c for c in cols if not c.startswith(base)]
 
 def controls_temp(m):
+    """ Returns temperature control neighbours"""
     base = f"Z_temp_m{m}"
     other_temp = drop_month_family(temp_months, base)
 
@@ -30,6 +32,7 @@ def controls_temp(m):
     return other_temp + near
 
 def controls_prcp(m):
+    """ Returns prcp control neighbours """
     base = f"Z_prcp_m{m}"
     other_prcp = drop_month_family(prcp_months, base)
 
@@ -40,6 +43,8 @@ def controls_prcp(m):
     return other_prcp + near
 
 def excl_test(df, y, endog, Z, controls=None, fe_entity='entity_id', fe_time='year'):
+    """ Returns comparison table over baseline IV2SLS estimates and stress-tested
+     IV2SLS estimates"""
     if controls is None:
         controls = []
     if isinstance(controls, str):
