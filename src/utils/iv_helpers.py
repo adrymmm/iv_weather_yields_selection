@@ -1,3 +1,6 @@
+import re
+from linearmodels.iv import IV2SLS
+
 def feat_name(feat):
     """ Returns the linear non-transformed name """
     return feat.split("__")[0]
@@ -20,7 +23,7 @@ def drop_month_family(cols, base):
     """ Drops month family of column """
     return [c for c in cols if not c.startswith(base)]
 
-def controls_temp(m):
+def controls_temp(m, temp_months, prcp_months):
     """ Returns temperature control neighbours"""
     base = f"Z_temp_m{m}"
     other_temp = drop_month_family(temp_months, base)
@@ -31,7 +34,7 @@ def controls_temp(m):
         near += [c for c in prcp_months if c.startswith(basep)]
     return other_temp + near
 
-def controls_prcp(m):
+def controls_prcp(m, temp_months, prcp_months):
     """ Returns prcp control neighbours """
     base = f"Z_prcp_m{m}"
     other_prcp = drop_month_family(prcp_months, base)

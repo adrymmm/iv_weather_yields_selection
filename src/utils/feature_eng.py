@@ -1,3 +1,5 @@
+import pandas as pd
+
 def build_non_linear_feats(X, quantiles =(0.25, 0.5, 0.75)):
     """ Returns polynomial, hinge and absolute value transformations for a
     dataframe X"""
