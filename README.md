@@ -38,4 +38,9 @@ pip install -r requirements.txt
 ```
 
 ### Data Availability 
-Raw meteorogical data is missing the tar file _ghcnd_hcn.tar_. This was omitted due to size but the source link can be found in the notebook _02_weather_clean_. Agricultural data can be extracted through the API by running the Jupyter notebook.
+Raw meteorogical data is missing the tar file _ghcnd_hcn.tar_. This was omitted due to size but the source link can be 
+found in the notebook _02_weather_clean_. Agricultural data can be extracted through the API by running the Jupyter notebook.
+
+### API Access
+Visit https://quickstats.nass.usda.gov/api and click on *Request API KEY*. You will receive the key in the specified email.
+In *01_crop_yield_clean* set the enviroment variable *NASS_API_KEY* to your personal API key.
