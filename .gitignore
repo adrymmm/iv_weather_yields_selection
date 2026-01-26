@@ -2,6 +2,11 @@
 .idea/
 *.iml
 
+# Large Data files
+data/raw/ghcnd_hcn.tar.gz
+data/raw/*.tar.gz
+data/raw/*.gz
+
 # Python
 __pycache__/
 *.pyc
