@@ -21,11 +21,11 @@ Weather variables are standardised within state and month to construct z-scored 
 
 **First stage** - instrument relevance: weather shocks $\mathbf{Z}$ predict log crop yield
 
-$$\log y_{it} = \alpha_i + \lambda_t + \mathbf{Z}_{it}'\pi + \nu_{it}$$
+$$\log(y_{it}) = \alpha_i + \lambda_t + \mathbf{Z}_{it}'\pi + \nu_{it}$$
 
 **Second stage** - causal effect of yield on next-year planted area:
 
-$$\log a_{i,t+1} = \alpha_i + \lambda_t + \beta \widehat{\log y_{it}} + \varepsilon_{it}$$
+$$\log(a_{i,t+1}) = \alpha_i + \lambda_t + \beta \log\hat{(y_{it})} + \varepsilon_{it}$$
 
 where $\alpha_i$ and $\lambda_t$ are state and year fixed effects, and $\beta$ is the causal elasticity of interest. Standard errors clustered at the state level throughout.
 
