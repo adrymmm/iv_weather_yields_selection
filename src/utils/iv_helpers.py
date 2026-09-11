@@ -19,9 +19,14 @@ def hinge_quartile_search(feat):
     return int(search.group(1)) if search else None
 
 
+def _month_matches(col, base):
+    """ True if col belongs to the same month family as base (e.g. 'Z_temp_m1'
+    matches 'Z_temp_m1' and 'Z_temp_m1__sq' but not 'Z_temp_m10')"""
+    return col == base or col.startswith(base + "__")
+
 def drop_month_family(cols, base):
     """ Drops month family of column """
-    return [c for c in cols if not c.startswith(base)]
+    return [c for c in cols if not _month_matches(c, base)]
 
 def controls_temp(m, temp_months, prcp_months):
     """ Returns temperature control neighbours"""
@@ -31,7 +36,7 @@ def controls_temp(m, temp_months, prcp_months):
     near = []
     for k in [m-1, m, m+1]:
         basep = f"Z_prcp_m{k}"
-        near += [c for c in prcp_months if c.startswith(basep)]
+        near += [c for c in prcp_months if _month_matches(c, basep)]
     return other_temp + near
 
 def controls_prcp(m, temp_months, prcp_months):
@@ -42,7 +47,7 @@ def controls_prcp(m, temp_months, prcp_months):
     near = []
     for k in [m-1, m, m+1]:
         baset = f"Z_temp_m{k}"
-        near += [c for c in temp_months if c.startswith(baset)]
+        near += [c for c in temp_months if _month_matches(c, baset)]
     return other_prcp + near
 
 def excl_test(df, y, endog, Z, controls=None, fe_entity='entity_id', fe_time='year'):
@@ -54,7 +59,7 @@ def excl_test(df, y, endog, Z, controls=None, fe_entity='entity_id', fe_time='ye
         controls = [controls]
 
     base_month = Z.split("__")[0]
-    controls = [c for c in controls if not c.startswith(base_month)]
+    controls = [c for c in controls if not _month_matches(c, base_month)]
 
     fe_part = f'C({fe_entity}) + C({fe_time})'
     base = f"{y}~ 1 + {fe_part} + [{endog} ~ {Z}]"
